@@ -177,34 +177,10 @@ CIDR: 10.30.0.0/16
 
 ## Architecture Diagram
 
+![Architecture Diagram](/images/diagram.png) 
+
 ```text
-                         Route53 (DNS)
-                                |
-                                v
-                       +------------------+
-                       |   ALB (HTTPS)    |
-                       +--------+---------+
-                                |
-                 +--------------+--------------+
-                 |                             |
-          +------v------+               +------v------+
-          | EC2 Instance |             | EC2 Instance |
-          | Private AZ-1 |             | Private AZ-2 |
-          +-------------+             +-------------+
-
-               Private Subnets (ASG across AZs)
-                        |
-                        v
-                 +-------------+
-                 | NAT Gateway |
-                 +------+------+ 
-                        |
-                        v
-                 +-------------+
-                 | Internet GW |
-                 +-------------+
-
 VPC (10.30.0.0/16)
 - Public Subnets (ALB + NAT)
 - Private Subnets (EC2 ASG)
-
+```
